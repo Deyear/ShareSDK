@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+// 导入头文件
+#import <ShareSDKExtension/SSEThirdPartyLoginHelper.h>
 
 @interface ViewController ()
 
@@ -17,6 +19,49 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+}
+- (IBAction)doLogin:(UIButton *)sender {
+    
+//    //例如QQ的登录
+//    [ShareSDK getUserInfo:SSDKPlatformTypeQQ
+//           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
+//     {
+//         
+//         if (state == SSDKResponseStateSuccess)
+//         {
+//             
+//             NSLog(@"\n uid=    %@",user.uid);
+//             NSLog(@"\n     %@   ",user.credential);
+//             NSLog(@"\n token=   %@",user.credential.token);
+//             NSLog(@"\n nickname=   %@",user.nickname);
+//         }
+//         
+//         else
+//         {
+//             NSLog(@"%@",error);
+//         }
+//         
+//     }];
+    
+    //添加微信登陆
+    [ShareSDK getUserInfo:SSDKPlatformTypeWechat onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error) {
+        
+        if (state == SSDKResponseStateSuccess)
+        {
+            
+            NSLog(@"\n uid=    %@",user.uid);
+            NSLog(@"\n     %@   ",user.credential);
+            NSLog(@"\n token=   %@",user.credential.token);
+            NSLog(@"\n nickname=   %@",user.nickname);
+        }
+        
+        else
+        {
+            NSLog(@"%@",error);
+        }
+        
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {
